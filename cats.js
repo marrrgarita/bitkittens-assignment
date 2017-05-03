@@ -6,7 +6,11 @@ $(function() {
       method: 'GET',
       dataType: 'json',
     }).done(function(data){
-        var source = data.cats.photo
+        var kitties = data.cats;
+        for (var i = 0; i < kitties.length; i++) {
+          var source = kitties[i]['photo'];
+          $('<img>').attr('src', source).appendTo('#cat' + (i + 1));
+        }
     });
   });
 
