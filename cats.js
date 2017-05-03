@@ -7,10 +7,15 @@ $(function() {
       dataType: 'json',
     }).done(function(data){
         var kitties = data.cats;
+        var kittyPhotos = [];
         for (var i = 0; i < kitties.length; i++) {
           var source = kitties[i]['photo'];
-          $('<img>').attr('src', source).appendTo('#cat' + (i + 1));
+          var image = $('<img>').attr('src', source).appendTo('#cat' + (i + 1));
+          kittyPhotos.push(image);
         }
+      $('.cat-box').each(function(index){
+        $(this).html(kittyPhotos[index]);
+      });
     });
   });
 
